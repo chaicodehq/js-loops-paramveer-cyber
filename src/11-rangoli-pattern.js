@@ -36,5 +36,24 @@
  *   rangoli(3) // => ["  *", " * *", "* * *", " * *", "  *"]
  */
 export function rangoli(n) {
-  // Your code here
+  if (typeof n !== 'number' || n <= 0 || !Number.isInteger(n)) {
+    return [];
+  }
+  const result = [];
+  const width = 2 * n - 1;
+  for (let i = 1; i <= 2 * n - 1; i++) {
+    let stars = i;
+    if (i > n) {
+      stars = 2 * n - i;
+    }
+    let row = ' '.repeat((width - (2 * stars - 1)) / 2);
+    for (let j = 0; j < stars; j++) {
+      row += '*';
+      if (j < stars - 1) {
+        row += ' ';
+      }
+    }
+    result.push(row);
+  }
+  return result;
 }
